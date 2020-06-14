@@ -1,6 +1,7 @@
 package com.austraila.cleaner.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,9 +13,11 @@ import com.austraila.cleaner.R;
 import com.austraila.cleaner.config.Config;
 import com.austraila.cleaner.models.BinModel;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.GregorianCalendar;
+import java.util.Date;
 
 public class CustomAdapter extends ArrayAdapter {
 
@@ -56,8 +59,22 @@ public class CustomAdapter extends ArrayAdapter {
         monthNum = Integer.parseInt(separated[1]);
         binmonth.setText(config.month_array[monthNum]);
 
-        Calendar calendar = new GregorianCalendar(Integer.parseInt(separated[0]), Integer.parseInt(separated[1]), Integer.parseInt(separated[2])); // Note that Month value is 0-based. e.g., 0 for January.
-        int reslut = calendar.get(Calendar.DAY_OF_WEEK);
+//        Calendar calendar = new GregorianCalendar(Integer.parseInt(separated[0])
+//                , Integer.parseInt(separated[1])
+//                , Integer.parseInt(separated[2]));
+
+        String dtStart = model.getBindate();
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+        Date date = new Date();
+        try {
+            date = format.parse(dtStart);
+            System.out.println(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        int reslut = cal.get(Calendar.DAY_OF_WEEK);
         weekday.setText(config.bin_week_array[reslut]);
 
         image1.setImageResource(model.getBinImage1());

@@ -17,13 +17,13 @@ public class Config {
             ,"November"
             ,"December"};
     public final String[] bin_week_array = {""
+            ,"Sunday"
             ,"Monday"
             ,"Tuesday"
             ,"Wednesday"
             ,"Thursday"
             ,"Friday"
             ,"Saturday"
-            ,"Sunday"
     };
 
     public final int[] bin_image_array ={R.drawable.red_bin

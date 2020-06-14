@@ -20,6 +20,7 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class ScheduleActivity extends AppCompatActivity {
 
@@ -61,14 +62,15 @@ public class ScheduleActivity extends AppCompatActivity {
         }
         for(int i = 0; i < mArrayList.size(); i ++){
             String keydate = mArrayList.get(i)[0];
-            if(groupkeyList != null){
-                if(!groupkeyList.contains(keydate)){
-                    groupkeyList.add(keydate);
-                }else{
-                    continue;
-                }
+            Log.e("total date", mArrayList.get(i)[0]);
+            if(!groupkeyList.contains(keydate)){
+                groupkeyList.add(keydate);
+            }else{
+                continue;
             }
+//            Log.e("groupkey list == ", String.valueOf(groupkeyList));
         }
+        Collections.sort(groupkeyList);
 
         if(groupkeyList != null) {
             for (int i = 0; i < groupkeyList.size(); i++) {
@@ -76,7 +78,6 @@ public class ScheduleActivity extends AppCompatActivity {
                 for (int j = 0; j < mArrayList.size(); j++) {
                     if (groupkeyList.get(i).equals(mArrayList.get(j)[0])) {
                         BinData.add(mArrayList.get(j));
-                        Log.e("BinData data ==", String.valueOf(BinData.size()));
                     }
 
                 }
@@ -87,7 +88,6 @@ public class ScheduleActivity extends AppCompatActivity {
         ArrayList mylist=new ArrayList<>();
         Config config = new Config();
         for(int i = 0; i < grouplist.size(); i ++){
-            Log.e("grouplist", String.valueOf(grouplist.get(i).size()));
             if(grouplist.get(i).size() == 1){
                 mylist.add(new BinModel(grouplist.get(i).get(0)[0], config.bin_image_array[Integer.parseInt(grouplist.get(i).get(0)[2])],0, 0));
             }
@@ -104,6 +104,7 @@ public class ScheduleActivity extends AppCompatActivity {
                         , config.bin_image_array[Integer.parseInt(grouplist.get(i).get(2)[2])]));
             }
         }
+
         ListView listView = findViewById(R.id.listview);
         CustomAdapter myAdapter=new CustomAdapter(ScheduleActivity.this, R.layout.listview_item, mylist);
         listView.setAdapter(myAdapter);

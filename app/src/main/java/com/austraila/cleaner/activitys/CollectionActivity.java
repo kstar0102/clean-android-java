@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -18,7 +19,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.austraila.cleaner.R;
 import com.austraila.cleaner.database.DataBaseHelper;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class CollectionActivity extends AppCompatActivity {
     private SQLiteOpenHelper openHelper;
@@ -81,8 +86,18 @@ public class CollectionActivity extends AppCompatActivity {
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                db = openHelper.getWritableDatabase();
-                insertData(binDate,selectedColour,cycleNum);
+                if(cycleNum == 0){
+                    savedata(7);
+                }
+                if(cycleNum == 1){
+                    savedata(14);
+                }
+                if(cycleNum == 2){
+                    savedata(21);
+                }
+                if(cycleNum == 3){
+                    savedata(28);
+                }
 
                 if(startNum < total) {
                     startNum += 1;
@@ -96,14 +111,75 @@ public class CollectionActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
             }
-
-            private void insertData(String binDate, int selectedColour, int cycleNum) {
-                ContentValues contentValues = new ContentValues();
-                contentValues.put(String.valueOf(DataBaseHelper.COL_2),cycleNum);
-                contentValues.put(String.valueOf(DataBaseHelper.COL_3),selectedColour);
-                contentValues.put(DataBaseHelper.COL_4,binDate);
-                db.insert(DataBaseHelper.TABLE_NAME,null,contentValues);
-            }
         });
+    }
+    public void savedata(int i){
+        db = openHelper.getWritableDatabase();
+        insertData(binDate,selectedColour,cycleNum);
+        Date pindate = new Date();
+        String dtStart = binDate;
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            pindate = format.parse(dtStart);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        if(i == 7){
+            while(i<121){
+                Date newDate = addDays(pindate, i);
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                Date date = newDate;
+                String dateTime = dateFormat.format(date);
+                Log.e(" test date == ", dateTime );
+                insertData(dateTime,selectedColour,cycleNum);
+                i+=7;
+            }
+        }
+        if(i == 14){
+            while(i<121){
+                Date newDate = addDays(pindate, i);
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                Date date = newDate;
+                String dateTime = dateFormat.format(date);
+                insertData(dateTime,selectedColour,cycleNum);
+                i+=14;
+            }
+        }
+        if(i == 21){
+            while(i<121){
+                Date newDate = addDays(pindate, i);
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                Date date = newDate;
+                String dateTime = dateFormat.format(date);
+                insertData(dateTime,selectedColour,cycleNum);
+                i+=21;
+            }
+        }
+        if(i == 28){
+            while(i<121){
+                Date newDate = addDays(pindate, i);
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                Date date = newDate;
+                String dateTime = dateFormat.format(date);
+                insertData(dateTime,selectedColour,cycleNum);
+                i+=28;
+            }
+        }
+
+    }
+
+    public void insertData(String binDate, int selectedColour, int cycleNum) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(DataBaseHelper.COL_2,cycleNum);
+        contentValues.put(DataBaseHelper.COL_3,selectedColour);
+        contentValues.put(DataBaseHelper.COL_4,binDate);
+        db.insert(DataBaseHelper.TABLE_NAME,null,contentValues);
+    }
+
+    public static Date addDays(Date date, int days) {
+        GregorianCalendar cal = new GregorianCalendar();
+        cal.setTime(date);
+        cal.add(Calendar.DATE, days);
+        return cal.getTime();
     }
 }
