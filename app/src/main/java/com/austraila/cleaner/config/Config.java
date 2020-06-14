@@ -1,5 +1,7 @@
 package com.austraila.cleaner.config;
 
+import com.austraila.cleaner.R;
+
 public class Config {
     public final String[] month_array ={""
             ,"Januery"
@@ -14,14 +16,22 @@ public class Config {
             ,"October"
             ,"November"
             ,"December"};
+    public final String[] bin_week_array = {""
+            ,"Monday"
+            ,"Tuesday"
+            ,"Wednesday"
+            ,"Thursday"
+            ,"Friday"
+            ,"Saturday"
+            ,"Sunday"
+    };
 
-    public final String[] bin_image_array ={""
-            , "red_bin"
-            ,"yellow_bin"
-            ,"green_bin"
-            ,"black_bin"
-            ,"blue_bin"
-            ,"brown_bin"
-            ,"purple_bin"
-            ,"white_bin"};
+    public final int[] bin_image_array ={R.drawable.red_bin
+            ,R.drawable.yellow_bin
+            ,R.drawable.green_bin
+            ,R.drawable.black_bin
+            ,R.drawable.blue_bin
+            ,R.drawable.brown_bin
+            ,R.drawable.purple_bin
+            ,R.drawable.white_bin};
 }

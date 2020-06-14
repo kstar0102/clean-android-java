@@ -1,9 +1,10 @@
 package com.austraila.cleaner.models;
 
 public class BinModel {
-     String Bindate, BinImage1, BinImage2, BinImage3;
+     String Bindate;
+     int BinImage1, BinImage2, BinImage3;
 
-     public BinModel(String bindate, String binImage1, String binImage2, String binImage3){
+     public BinModel(String bindate, int binImage1, int binImage2, int binImage3){
          this.Bindate = bindate;
          this.BinImage1 = binImage1;
          this.BinImage2 = binImage2;
@@ -14,15 +15,15 @@ public class BinModel {
          return Bindate;
      }
 
-     public String getBinImage1(){
+     public int getBinImage1(){
          return BinImage1;
      }
 
-     public String getBinImage2(){
+     public int getBinImage2(){
          return BinImage2;
      }
 
-     public String getBinImage3(){
+     public int getBinImage3(){
          return BinImage3;
      }
 }

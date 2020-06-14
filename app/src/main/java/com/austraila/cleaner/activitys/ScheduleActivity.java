@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.austraila.cleaner.R;
 import com.austraila.cleaner.adapter.CustomAdapter;
+import com.austraila.cleaner.config.Config;
 import com.austraila.cleaner.database.DataBaseHelper;
 import com.austraila.cleaner.models.BinModel;
 import com.google.android.gms.ads.AdRequest;
@@ -73,27 +74,34 @@ public class ScheduleActivity extends AppCompatActivity {
             for (int i = 0; i < groupkeyList.size(); i++) {
                 ArrayList<String[]> BinData = new ArrayList<String[]>();
                 for (int j = 0; j < mArrayList.size(); j++) {
-                    if (groupkeyList.get(i) == mArrayList.get(j)[0]) {
+                    if (groupkeyList.get(i).equals(mArrayList.get(j)[0])) {
                         BinData.add(mArrayList.get(j));
+                        Log.e("BinData data ==", String.valueOf(BinData.size()));
                     }
+
                 }
                 grouplist.add(BinData);
             }
         }
 
         ArrayList mylist=new ArrayList<>();
+        Config config = new Config();
         for(int i = 0; i < grouplist.size(); i ++){
-            Log.e("day!!!!!", grouplist.get(i).get(0)[0]);
+            Log.e("grouplist", String.valueOf(grouplist.get(i).size()));
             if(grouplist.get(i).size() == 1){
-                mylist.add(new BinModel(grouplist.get(i).get(0)[0], grouplist.get(i).get(0)[2],"N", "N"));
+                mylist.add(new BinModel(grouplist.get(i).get(0)[0], config.bin_image_array[Integer.parseInt(grouplist.get(i).get(0)[2])],0, 0));
             }
 
             if(grouplist.get(i).size() == 2){
-                mylist.add(new BinModel(grouplist.get(i).get(0)[0], grouplist.get(i).get(0)[2], grouplist.get(i).get(1)[2], "N"));
+                mylist.add(new BinModel(grouplist.get(i).get(0)[0], config.bin_image_array[Integer.parseInt(grouplist.get(i).get(0)[2])]
+                        , config.bin_image_array[Integer.parseInt(grouplist.get(i).get(1)[2])], 0));
             }
 
             if(grouplist.get(i).size() == 3){
-                mylist.add(new BinModel(grouplist.get(i).get(0)[0], grouplist.get(i).get(0)[2],grouplist.get(i).get(1)[2], grouplist.get(i).get(2)[2]));
+                mylist.add(new BinModel(grouplist.get(i).get(0)[0]
+                        , config.bin_image_array[Integer.parseInt(grouplist.get(i).get(0)[2])]
+                        , config.bin_image_array[Integer.parseInt(grouplist.get(i).get(1)[2])]
+                        , config.bin_image_array[Integer.parseInt(grouplist.get(i).get(2)[2])]));
             }
         }
         ListView listView = findViewById(R.id.listview);

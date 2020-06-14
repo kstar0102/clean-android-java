@@ -6,7 +6,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -20,7 +19,6 @@ import com.austraila.cleaner.R;
 import com.austraila.cleaner.database.DataBaseHelper;
 
 import java.util.Calendar;
-import java.util.Date;
 
 public class CollectionActivity extends AppCompatActivity {
     private SQLiteOpenHelper openHelper;
@@ -104,7 +102,6 @@ public class CollectionActivity extends AppCompatActivity {
                 contentValues.put(String.valueOf(DataBaseHelper.COL_2),cycleNum);
                 contentValues.put(String.valueOf(DataBaseHelper.COL_3),selectedColour);
                 contentValues.put(DataBaseHelper.COL_4,binDate);
-                Log.d("contentvalues", String.valueOf(contentValues));
                 db.insert(DataBaseHelper.TABLE_NAME,null,contentValues);
             }
         });
