@@ -1,0 +1,79 @@
+<resources>
+    <string name="app_name">cleaner</string>
+    <string name="pagetitle">WCB</string>
+    <string name="bin">Bin</string>
+    <string name="binNumber">1</string>
+
+<!--    splash-->
+    <string name="w">W</string>
+    <string name="hat">hat</string>
+    <string name="c">C</string>
+    <string name="olour">olour</string>
+    <string name="b">B</string>
+    <string name="in">in?</string>
+
+<!--    main-->
+    <string name="main1">Pleaes answer a</string>
+    <string name="main2">few setup</string>
+    <string name="main3">questions to</string>
+    <string name="main4">ensure you</string>
+    <string name="main5">always take the</string>
+    <string name="main6">correct bins out</string>
+    <string name="main7">and on time.</string>
+    <string name="binscount">How many bins do you have?</string>
+    
+<!--    colour-->
+    <string name="colourdes">Choose a colour for bin</string>
+
+<!--    cycle-->
+    <string name="week1">Weekly</string>
+    <string name="week2">Fortnightly</string>
+    <string name="week3">Every 3 weeks</string>
+    <string name="week4">Every 4 weeks</string>
+
+<!--    setup-->
+    <string name="setup">Setup Complete</string>
+
+<!--    alarm-->
+    <string name="alarm1">Would you like a</string>
+    <string name="alarm2">reminder to let</string>
+    <string name="alarm3">you know wher</string>
+    <string name="alarm4">the bins are</string>
+    <string name="alarm5">due to be taken</string>
+    <string name="alarm6">out?</string>
+
+<!--    reminder-->
+    <string name="beforeday">Day Before</string>
+    <string name="onday">On the Day</string>
+
+<!--    schecdule-->
+    <string name="schedule1">Next scheduled</string>
+    <string name="schecdule2">collections</string>
+
+    <string-array name="month_array">
+        <item>Januery</item>
+        <item>February</item>
+        <item>March</item>
+        <item>April</item>
+        <item>May</item>
+        <item>June</item>
+        <item>July</item>
+        <item>August</item>
+        <item>September</item>
+        <item>October</item>
+        <item>November</item>
+        <item>December</item>
+    </string-array>
+
+    <string-array name="bin_image_array">
+        <item>red_bin</item>
+        <item>yellow_bin</item>
+        <item>green_bin</item>
+        <item>black_bin</item>
+        <item>blue_bin</item>
+        <item>brown_bin</item>
+        <item>purple_bin</item>
+        <item>white_bin</item>
+    </string-array>
+
+</resources>
