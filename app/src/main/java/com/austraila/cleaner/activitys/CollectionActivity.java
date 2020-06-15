@@ -6,7 +6,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -115,7 +114,7 @@ public class CollectionActivity extends AppCompatActivity {
     }
     public void savedata(int i){
         db = openHelper.getWritableDatabase();
-        insertData(binDate,selectedColour,cycleNum);
+
         Date pindate = new Date();
         String dtStart = binDate;
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -124,13 +123,17 @@ public class CollectionActivity extends AppCompatActivity {
         } catch (ParseException e) {
             e.printStackTrace();
         }
+        SimpleDateFormat dateFormat0 = new SimpleDateFormat("yyyy-MM-dd");
+        Date date0 = pindate;
+        String dateTime0 = dateFormat0.format(date0);
+        insertData(dateTime0,selectedColour,cycleNum);
+
         if(i == 7){
             while(i<121){
                 Date newDate = addDays(pindate, i);
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
                 Date date = newDate;
                 String dateTime = dateFormat.format(date);
-                Log.e(" test date == ", dateTime );
                 insertData(dateTime,selectedColour,cycleNum);
                 i+=7;
             }

@@ -47,7 +47,7 @@ public class ScheduleActivity extends AppCompatActivity {
         AdRequest request = new AdRequest.Builder().build();
         adView.loadAd(request);
 
-        cursor = db.rawQuery("SELECT *FROM " + DataBaseHelper.TABLE_NAME, null);
+        cursor = db.rawQuery("SELECT *FROM " + DataBaseHelper.TABLE_NAME,  null);
 
         String[] data;
         if (cursor != null) {
@@ -62,15 +62,15 @@ public class ScheduleActivity extends AppCompatActivity {
         }
         for(int i = 0; i < mArrayList.size(); i ++){
             String keydate = mArrayList.get(i)[0];
-            Log.e("total date", mArrayList.get(i)[0]);
+            Log.e("array list TAG", String.valueOf(mArrayList.get(i)[0]));
             if(!groupkeyList.contains(keydate)){
                 groupkeyList.add(keydate);
             }else{
                 continue;
             }
-//            Log.e("groupkey list == ", String.valueOf(groupkeyList));
         }
         Collections.sort(groupkeyList);
+        Log.e("keylisst TAG", String.valueOf(groupkeyList));
 
         if(groupkeyList != null) {
             for (int i = 0; i < groupkeyList.size(); i++) {
@@ -79,7 +79,6 @@ public class ScheduleActivity extends AppCompatActivity {
                     if (groupkeyList.get(i).equals(mArrayList.get(j)[0])) {
                         BinData.add(mArrayList.get(j));
                     }
-
                 }
                 grouplist.add(BinData);
             }
